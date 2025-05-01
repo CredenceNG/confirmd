@@ -116,7 +116,7 @@ const run = async () => {
 
     // Handle errors related to address in use
     server
-      .listen(5001, () => {
+      .listen(process.env.PORT || 5001, () => {
         console.log('Server started on port 5001.')
       })
       .on('error', (err: NodeJS.ErrnoException) => {
