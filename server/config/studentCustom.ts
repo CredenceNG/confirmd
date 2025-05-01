@@ -50,31 +50,31 @@ export const studentCustom: CustomCharacter = {
     {
       screenId: 'PICK_CHARACTER',
       title: 'Meet Alice',
-      text: "Meet Alice (that's you in this demo!). Alice is a student at BestBC College. To help make student life easier, BestBC College is going to offer Alice a digital Student Card to put in her BC Wallet.",
+      text: "Meet Alice (that's you in this demo!). Alice is a student at Yaba College. To help make student life easier, Yaba College is going to offer Alice a digital Student Card to put in her Confirmd Wallet.",
     },
     {
       screenId: 'SETUP_START',
       title: "Let's get started!",
-      text: 'BC Wallet is a new app for storing and using credentials on your smartphone. Credentials are things like IDs, licenses and diplomas. \nUsing your BC Wallet is fast and simple. In the future it can be used online and in person. You approve every use, and share only what is needed. \nIn this demo, you will use two credentials to prove who you are and access court materials online instead of in-person.',
+      text: 'Confirmd Wallet is a new app for storing and using credentials on your smartphone. Credentials are things like IDs, licenses and diplomas. \nUsing your Confirmd Walletis fast and simple. In the future it can be used online and in person. You approve every use, and share only what is needed. \nIn this demo, you will use two credentials to prove who you are and access court materials online instead of in-person.',
       image: '/public/common/getStarted.svg',
     },
     {
       screenId: 'CHOOSE_WALLET',
-      title: 'Install BC Wallet',
-      text: 'First, install the BC Wallet app onto your smartphone. Select the button below for instructions and the next step.',
+      title: 'Install Confirmd Wallet',
+      text: 'First, install the Confirmd Wallet app onto your smartphone. Select the button below for instructions and the next step.',
       image: '/public/common/app-store-screenshots.png',
     },
     {
       screenId: 'CONNECT',
-      title: 'Connect with BestBC College',
-      text: 'Imagine, as Alice, you are logged into the BestBC College website (see below). They want to offer you a Digital Student Card. Use your BC Wallet to scan the QR code from the website.',
+      title: 'Connect with Yaba College',
+      text: 'Imagine, as Alice, you are logged into the Yaba College website (see below). They want to offer you a Digital Student Card. ',
       image: '/public/student/onboarding-connect-light.svg',
-      issuer_name: 'BestBC College',
+      issuer_name: 'Yaba College',
     },
     {
       screenId: 'ACCEPT_CREDENTIAL',
       title: 'Accept your student card',
-      text: "Your wallet now has a secure and private connection with BestBC College. You should have received an offer in BC Wallet for a Student Card.\nReview what they are sending, and choose 'Accept offer'.",
+      text: "Your wallet now has a secure and private connection with Yaba College. You should have received an offer in Confirmd Walletfor a Student Card.\nReview what they are sending, and choose 'Accept offer'.",
       image: '/public/common/onboarding-credential-light.svg',
       credentials: [
         {
@@ -126,7 +126,7 @@ export const studentCustom: CustomCharacter = {
         {
           screenId: 'PROOF',
           title: 'Confirm the information to send',
-          text: "BC Wallet will now ask you to confirm what to send. Notice how it will only share if the credential has expired, not even the expiry date itself gets shared. You don't have to share anything else for it to be trustable.",
+          text: "Confirmd Wallet will now ask you to confirm what to send. Notice how it will only share if the credential has expired, not even the expiry date itself gets shared. You don't have to share anything else for it to be trustable.",
           requestOptions: {
             title: 'Cool Clothes Online Request',
             text: 'Cool Clothes Online would like some of your personal information.',
@@ -154,7 +154,7 @@ export const studentCustom: CustomCharacter = {
     },
     {
       id: 'study',
-      name: 'BestBC College',
+      name: 'Yaba College',
       screens: [
         {
           screenId: 'START',
@@ -165,17 +165,17 @@ export const studentCustom: CustomCharacter = {
         {
           screenId: 'CONNECTION',
           title: 'Start booking the room',
-          text: "Imagine you're on the room booking page for BestBC College, abd you've chosen a data and time. Now they just need to confirm a few details. Scan the QR code to continue.",
+          text: "Imagine you're on the room booking page for Yaba College, abd you've chosen a data and time. Now they just need to confirm a few details. Scan the QR code to continue.",
           image: '/public/student/useCases/school/best-bc-college-no-overlay.png',
-          verifier: { name: 'BestBC College', icon: '/public/student/useCases/school/logo-university.png' },
+          verifier: { name: 'Yaba College', icon: '/public/student/useCases/school/logo-university.png' },
         },
         {
           screenId: 'PROOF',
           title: 'Confirm the information to send',
-          text: "BC Wallet will now ask you to confirm what to send for the booking. Notice how they only need your first name so they can display it on the booking screen. By providing anything from your student card, they automatically know your student card hasn't been revoked.",
+          text: "Confirmd Wallet will now ask you to confirm what to send for the booking. Notice how they only need your first name so they can display it on the booking screen. By providing anything from your student card, they automatically know your student card hasn't been revoked.",
           requestOptions: {
-            title: 'BestBC College Request',
-            text: 'BestBC College would like some of your personal information.',
+            title: 'Yaba College Request',
+            text: 'Yaba College would like some of your personal information.',
             requestedCredentials: [
               {
                 icon: '/public/student/useCases/school/icon-university-card.png',

@@ -8,6 +8,7 @@ import { tractionRequest } from '../utils/tractionHelper'
 export class CredentialController {
   @Get('/connId/:connId')
   public async getCredByConnId(@Param('connId') connId: string) {
+    console.log('getCredByConnId', connId)
     const res = (
       await tractionRequest.get('/issue-credential/records', {
         params: {
@@ -15,12 +16,14 @@ export class CredentialController {
         },
       })
     ).data
-
+    console.log('getCredByConnId response', res.data)
     return res
   }
 
   @Post('/getOrCreateCredDef')
   public async getOrCreateCredDef(@Body() credential: Credential) {
+    console.log('getOrCreateCredDef', credential)
+
     const schemas = (
       await tractionRequest.get(`/schemas/created`, {
         params: { schema_name: credential.name, schema_version: credential.version },
@@ -28,17 +31,28 @@ export class CredentialController {
     ).data
     let schema_id = ''
     if (schemas.schema_ids.length <= 0) {
+      console.log('Creating schema: schema NOT Found', credential.name, credential.version)
       const schemaAttrs = credential.attributes.map((attr) => attr.name)
-      const resp = (
-        await tractionRequest.post(`/schemas`, {
-          attributes: schemaAttrs,
-          schema_name: credential.name,
-          schema_version: credential.version,
-        })
-      ).data
+      const schemaAttrsJson = JSON.stringify(schemaAttrs)
+      console.log('schemaAttrsJson', schemaAttrsJson)
+
+      const schemaAttrsDouble = credential.attributes.map((attr) => `"${attr.name}"`)
+      console.log('schemaAttrsDouble', schemaAttrsDouble)
+
+      const dataset = {
+        schema_name: credential.name,
+        schema_version: credential.version,
+        attributes: schemaAttrs, // Use the array directly, don't stringify it
+      }
+      console.log('dataset', dataset)
+
+      // This will now automatically serialize to the format you want when sent:
+      const resp = (await tractionRequest.post(`/schemas`, dataset)).data
+
       schema_id = resp.sent.schema_id
       await new Promise((r) => setTimeout(r, 5000))
     } else {
+      console.log('Schema Found', schemas.schema_ids[0])
       schema_id = schemas.schema_ids[0]
     }
 
@@ -62,7 +76,9 @@ export class CredentialController {
 
   @Post('/offerCredential')
   public async offerCredential(@Body() params: any) {
+    console.log('offerCredential', params)
     const response = await tractionRequest.post(`/issue-credential/send`, params)
+    console.log('offerCredential response', response.data)
     return response.data
   }
 }

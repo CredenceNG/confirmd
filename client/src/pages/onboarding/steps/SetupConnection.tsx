@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { isMobile } from 'react-device-detect'
-import { FiExternalLink } from 'react-icons/fi'
+import { FiExternalLink, FiCheckCircle } from 'react-icons/fi'
 
 import { fade, fadeX } from '../../../FramerAnimations'
 import { Button } from '../../../components/Button'
@@ -47,6 +47,8 @@ export const SetupConnection: React.FC<Props> = ({
   onConnectionComplete,
 }) => {
   const deepLink = `bcwallet://aries_connection_invitation?${invitationUrl?.split('?')[1]}`
+  const [connectionConfirmed, setConnectionConfirmed] = useState(false)
+  const [isProcessingCredential, setIsProcessingCredential] = useState(false)
 
   const dispatch = useAppDispatch()
 
@@ -63,8 +65,21 @@ export const SetupConnection: React.FC<Props> = ({
   }, [])
 
   useEffect(() => {
-    if (isCompleted && onConnectionComplete) {
-      onConnectionComplete()
+    if (isCompleted && !connectionConfirmed) {
+      setConnectionConfirmed(true)
+
+      // Wait a moment to display the success message before proceeding
+      setTimeout(() => {
+        if (onConnectionComplete) {
+          onConnectionComplete()
+        }
+
+        // Auto proceed to credential issuance after confirmation
+        setIsProcessingCredential(true)
+        setTimeout(() => {
+          nextSlide()
+        }, 2000)
+      }, 1500)
     }
   }, [isCompleted])
 
@@ -101,6 +116,7 @@ export const SetupConnection: React.FC<Props> = ({
       }, 500)
     }
   }
+
   const renderCTA = !isCompleted ? (
     <motion.div variants={fade} key="openWallet">
       <>
@@ -121,8 +137,16 @@ export const SetupConnection: React.FC<Props> = ({
       )}
     </motion.div>
   ) : (
-    <motion.div variants={fade} key="ctaCompleted">
-      <p>Success! You can continue.</p>
+    <motion.div variants={fade} key="ctaCompleted" className="flex flex-col items-center">
+      <div className="flex items-center mb-3 text-green-600">
+        <FiCheckCircle size={24} className="mr-2" />
+        <p className="font-bold">Connection Established Successfully!</p>
+      </div>
+      {isProcessingCredential ? (
+        <p>Preparing to issue credential based on your information...</p>
+      ) : (
+        <Button text="Continue to Credential Issuance" onClick={nextSlide} />
+      )}
     </motion.div>
   )
 
@@ -136,7 +160,13 @@ export const SetupConnection: React.FC<Props> = ({
     >
       <StepInformation title={title} text={text} />
       <div className="max-w-xs flex flex-col self-center items-center bg-white rounded-lg p-4  dark:text-black">
-        {renderQRCode(true)}
+        {!isCompleted ? (
+          renderQRCode(true)
+        ) : (
+          <div className="py-4">
+            <FiCheckCircle size={60} className="text-green-600 mx-auto" />
+          </div>
+        )}
       </div>
       <div className="flex flex-col mt-4 text-center text-sm md:text-base font-semibold">{renderCTA}</div>
     </motion.div>
@@ -154,11 +184,29 @@ export const SetupConnection: React.FC<Props> = ({
         style={{ backgroundImage: `url(${prependApiUrl(backgroundImage as string)})` }}
       >
         <div className="max-w-xs flex flex-col self-center items-center bg-white rounded-lg p-4  dark:text-black">
-          <p className="text-center mb-2">Scan the QR Code below with your digital wallet.</p>
-          <div>{renderQRCode(true)}</div>
-          <div className="mt-5">
-            <Button text="I Already Have my Credential" onClick={skipIssuance}></Button>
-          </div>
+          {!isCompleted ? (
+            <>
+              <p className="text-center mb-2">Scan the QR Code below with your ConfirmD digital wallet.</p>
+              <div>{renderQRCode(true)}</div>
+              {!disableSkipConnection && (
+                <div className="mt-5">
+                  <Button text="I Already Have my Credential" onClick={skipIssuance}></Button>
+                </div>
+              )}
+            </>
+          ) : (
+            <div className="py-4 flex flex-col items-center">
+              <FiCheckCircle size={60} className="text-green-600 mb-3" />
+              <p className="font-bold text-center">Connection Established Successfully!</p>
+              {isProcessingCredential ? (
+                <p className="text-center mt-3">Preparing to issue credential based on your information...</p>
+              ) : (
+                <div className="mt-4">
+                  <Button text="Continue to Credential Issuance" onClick={nextSlide} />
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </motion.div>

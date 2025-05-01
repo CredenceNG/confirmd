@@ -21,7 +21,7 @@ export const CharacterContent: React.FC<Props> = ({ character }) => {
             initial="hidden"
             animate="show"
             exit="exit"
-            className="flex flex-col h-full justify-around"
+            className="h-full flex flex-col justify-center text-center mt-2 items-center"
           >
             <div className="p-2 bg-bcgov-blue dark:bg-bcgov-gold text-white rounded-l-lg flex px-4 self-end">
               <p>{character.type}</p>

@@ -31,7 +31,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-use-before-define': ['error', { functions: false, classes: false, variables: true }],
     '@typescript-eslint/explicit-member-accessibility': 'error',
-    'no-console': 'error',
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off', // Allow console in development, warn in production
     '@typescript-eslint/ban-ts-comment': 'warn',
     '@typescript-eslint/consistent-type-imports': 'error',
     'import/no-cycle': 'error',

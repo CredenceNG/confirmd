@@ -1,6 +1,6 @@
 import type { Socket } from 'socket.io-client'
 
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom'
 import { io } from 'socket.io-client'
@@ -9,6 +9,7 @@ import { baseWsUrl, socketPath } from './api/BaseUrl'
 import { useAppDispatch } from './hooks/hooks'
 import { useAnalytics } from './hooks/useAnalytics'
 import { PageNotFound } from './pages/PageNotFound'
+import { ConfirmedPersonPage } from './pages/confirmedPerson/ConfirmedPersonPage'
 import { DashboardPage } from './pages/dashboard/DashboardPage'
 import { LandingPage } from './pages/landing/LandingPage'
 import { OnboardingPage } from './pages/onboarding/OnboardingPage'
@@ -24,7 +25,10 @@ import { PrivateRoute } from './utils/PrivateRoute'
 import { ThemeProvider } from './utils/ThemeContext'
 
 function App() {
-  useAnalytics()
+  // Move useState inside the component
+  const [isVisible, setIsVisible] = useState(true)
+
+  // useAnalytics()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const location = useLocation()
@@ -75,30 +79,35 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            {basePath !== '/' && <Route path="/" element={<Navigate to={basePath} />}></Route>}
-            <Route path={`${basePath}/`} element={<LandingPage />} />
-            <Route path={`${basePath}/:slug`} element={<LandingPage />} />
-            <Route path={`${basePath}/demo`} element={<OnboardingPage />} />
-            <Route path={`${basePath}/demo/:slug`} element={<OnboardingPage />} />
-            <Route
-              path={`${basePath}/dashboard`}
-              element={
-                <PrivateRoute>
-                  <DashboardPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path={`${basePath}/uc/:slug`}
-              element={
-                <PrivateRoute>
-                  <UseCasePage />
-                </PrivateRoute>
-              }
-            />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
+          {isVisible && (
+            <motion.div key={location.pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <Routes location={location}>
+                {basePath !== '/' && <Route path="/" element={<Navigate to={basePath} />}></Route>}
+                <Route path={`${basePath}/`} element={<LandingPage />} />
+                <Route path={`${basePath}/:slug`} element={<LandingPage />} />
+                <Route path={`${basePath}/demo`} element={<OnboardingPage />} />
+                <Route path={`${basePath}/demo/:slug`} element={<OnboardingPage />} />
+                <Route path={`${basePath}/confirmedperson`} element={<ConfirmedPersonPage />} />
+                <Route
+                  path={`${basePath}/dashboard`}
+                  element={
+                    <PrivateRoute>
+                      <DashboardPage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path={`${basePath}/uc/:slug`}
+                  element={
+                    <PrivateRoute>
+                      <UseCasePage />
+                    </PrivateRoute>
+                  }
+                />
+                <Route path="*" element={<PageNotFound />} />
+              </Routes>
+            </motion.div>
+          )}
         </AnimatePresence>
       </AuthProvider>
     </ThemeProvider>

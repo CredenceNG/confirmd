@@ -63,6 +63,7 @@ export const ChooseWallet: React.FC<Props> = ({ title, text, addOnboardingProgre
       >
         {renderWallets}
       </motion.div>
+
       <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
         {selectedWallet && (
           <WalletModal

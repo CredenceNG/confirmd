@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["bcgov-black", "bcgov-darkgrey", "bcgov-lightgrey"]
+  "cSpell.words": ["bcgov-black", "bcgov-darkgrey", "bcgov-lightgrey"],
+  "postman.settings.dotenv-detection-notification-visibility": false
 }

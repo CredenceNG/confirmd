@@ -8,7 +8,7 @@ import rootReducer from '../slices/index'
 export const persistConfig = {
   key: 'redux-store-root',
   storage,
-  whitelist: ['preferences', 'characters', 'onboarding', 'credentials', 'connection'],
+  whitelist: ['preferences', 'characters', 'onboarding', 'credentials', 'connection', 'confirmedPerson'],
   version: 4,
 }
 

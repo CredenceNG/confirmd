@@ -37,7 +37,7 @@ export const UseCasePage: React.FC = () => {
   const [currentUseCase, setCurrentUseCase] = useState<CustomUseCase>()
 
   const navigate = useNavigate()
-  useTitle(`${currentUseCase?.name ?? 'Use case'} | BC Wallet Self-Sovereign Identity Demo`)
+  useTitle(`${currentUseCase?.name ?? 'Use case'} | Confirmd WalletSelf-Sovereign Identity Demo`)
 
   useEffect(() => {
     if (currentCharacter && slug) {

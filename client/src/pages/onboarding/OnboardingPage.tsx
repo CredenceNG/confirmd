@@ -23,7 +23,7 @@ import { OnboardingContainer } from './OnboardingContainer'
 import { Stepper } from './components/Stepper'
 
 export const OnboardingPage: React.FC = () => {
-  useTitle('Get Started | BC Wallet Self-Sovereign Identity Demo')
+  useTitle('Get Started | Confamd Wallet Self-Sovereign Identity Demo')
 
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -73,6 +73,7 @@ export const OnboardingPage: React.FC = () => {
         className="container flex flex-col items-center p-4"
       >
         <Stepper currentCharacter={currentCharacter} onboardingStep={onboardingStep} />
+
         <AnimatePresence mode="wait">
           {mounted && (
             <OnboardingContainer

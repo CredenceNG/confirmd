@@ -1,13 +1,12 @@
 import { AnimatePresence, motion } from 'framer-motion'
+import QRCodeReact from 'qrcode.react' // Updated import to use type definitions
+import React from 'react'
 
 import { standardFade, dropIn } from '../../../FramerAnimations'
 import { baseUrl } from '../../../api/BaseUrl'
 import appStore from '../../../assets/light/app-store-badge.svg'
 import playStore from '../../../assets/light/google-play-badge.png'
 import { SmallButton } from '../../../components/SmallButton'
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const QRCode = require('qrcode.react')
 
 export interface Wallet {
   id: number
@@ -30,6 +29,10 @@ export const WalletModal: React.FC<Props> = ({ isWalletModalOpen, setIsWalletMod
   function isMobile() {
     return window.innerWidth <= 760
   }
+
+  // Use wallet.url if available, otherwise fallback to baseUrl/qr
+  const qrValue = wallet?.url || `${baseUrl}/qr`
+
   return (
     <AnimatePresence>
       {isWalletModalOpen && (
@@ -62,13 +65,13 @@ export const WalletModal: React.FC<Props> = ({ isWalletModalOpen, setIsWalletMod
               <div style={{ display: 'flex', alignItems: 'flex-start' }}>
                 <div className="px-2 md:px-6 pt-2 sm:mt-4 sm:pb-4">
                   <div className="mt-5">
-                    <p className="font-semibold">1. Download BC Wallet on your phone</p>
+                    <p className="font-semibold">1. Download Confirmd Walleton your phone</p>
                     <p className="mt-5 mb-5">
                       To download,{' '}
                       {isMobile()
                         ? 'select the apps store icon below'
                         : 'scan this QR code with your phone or select the apps store icon below'}
-                      . You can also search for BC Wallet in your phone's apps store.
+                      . You can also search for Confirmd Wallet in your phone's apps store.
                     </p>
                     <div
                       style={{
@@ -104,7 +107,7 @@ export const WalletModal: React.FC<Props> = ({ isWalletModalOpen, setIsWalletMod
                 </div>
                 {!isMobile() && (
                   <div className="mt-10 mr-10">
-                    <QRCode value={`${baseUrl}/qr`} size={125} />
+                    <QRCodeReact value={qrValue} size={125} renderAs="svg" includeMargin={true} />
                   </div>
                 )}
               </div>

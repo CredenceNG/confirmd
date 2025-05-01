@@ -25,7 +25,7 @@ import { RevocationContainer } from './components/RevocationContainer'
 import { UseCaseContainer } from './components/UseCaseContainer'
 
 export const DashboardPage: React.FC = () => {
-  useTitle('Dashboard | BC Wallet Self-Sovereign Identity Demo')
+  useTitle('Dashboard | Credence Wallet Self-Sovereign Identity Demo')
 
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
@@ -107,9 +107,11 @@ export const DashboardPage: React.FC = () => {
           </div>
         </>
       ) : (
-        <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
-          <Modal title={ERROR_TITLE} description={ERROR_DESCRIPTION} onOk={routeError} />
-        </AnimatePresence>
+        <>
+          <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
+            <Modal title={ERROR_TITLE} description={ERROR_DESCRIPTION} onOk={routeError} />
+          </AnimatePresence>
+        </>
       )}
       {demoCompleted && <DemoCompletedModal action={completeDemo} cancel={cancelCompleteDemo} />}
       <Footer />

@@ -4,7 +4,7 @@ import { trackSelfDescribingEvent } from '@snowplow/browser-tracker'
 import { AnimatePresence, motion } from 'framer-motion'
 import { track } from 'insights-js'
 import { startCase } from 'lodash'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { fade, fadeX } from '../../../FramerAnimations'
@@ -62,8 +62,13 @@ export const AcceptCredential: React.FC<Props> = ({
     (cred) => issuedCredentials.includes(cred.name) || issuedCredentialsStartCase.includes(cred.name)
   )
 
+  const issuedRef = useRef(false) // Simple flag to track whether credentials were issued
+
   useEffect(() => {
-    if (credentials.length > 0) {
+    // Only issue credentials if we haven't already done so
+    if (credentials && credentials.length > 0 && !issuedRef.current && connectionId) {
+      issuedRef.current = true // Mark as issued
+
       credentials.forEach(async (item) => {
         const credDefId = (await getOrCreateCredDefId(item)).data
         if (item !== undefined) {
@@ -79,7 +84,7 @@ export const AcceptCredential: React.FC<Props> = ({
       })
       setCredentialsIssued(true)
     }
-  }, [currentCharacter, connectionId])
+  }, [currentCharacter, connectionId, credentials, dispatch, isDeepLink])
 
   useEffect(() => {
     if (credentialsAccepted && onCredentialAccepted) {
@@ -146,11 +151,13 @@ export const AcceptCredential: React.FC<Props> = ({
       <StepInformation title={title} text={text} />
       <div className="flex flex-row m-auto content-center">
         {credentials.length ? (
-          <AnimatePresence mode="wait">
-            <motion.div className={`flex flex-1 flex-col m-auto`} variants={fade} animate="show" exit="exit">
-              <StarterCredentials credentials={credentials} />
-            </motion.div>
-          </AnimatePresence>
+          <>
+            <AnimatePresence mode="wait">
+              <motion.div className={`flex flex-1 flex-col m-auto`} variants={fade} animate="show" exit="exit">
+                <StarterCredentials credentials={credentials} />
+              </motion.div>
+            </AnimatePresence>
+          </>
         ) : (
           <motion.div className="flex flex-col h-full m-auto">
             <Loader />

@@ -1,11 +1,12 @@
 import type { CustomCharacter } from '../src/content/types'
+
 import { getDateInt } from '../src/utils/dateint'
 
 export const businessCustom: CustomCharacter = {
   name: 'Dave',
   type: 'Proprietor',
   image: '/public/student/student.svg',
-  hidden: true,
+  hidden: false,
   revocationInfo: [
     {
       credentialName: 'Digital Business Card',
@@ -51,31 +52,31 @@ export const businessCustom: CustomCharacter = {
     {
       screenId: 'PICK_CHARACTER',
       title: 'Meet Dave',
-      text: "Meet Dave (that's you in this demo!). Dave is a sole proprietor. To help make his life easier, BC Registries is going to offer Dave a Digital Business Card to put in his BC Wallet.",
+      text: "Meet Dave (that's you in this demo!). Dave is a sole proprietor. To help make his life easier, BC Registries is going to offer Dave a Digital Business Card to put in his Confirmd Wallet.",
     },
     {
       screenId: 'SETUP_START',
       title: "Let's get started!",
-      text: 'BC Wallet is a new app for storing and using credentials on your smartphone. Credentials are things like IDs, licenses and diplomas. \nUsing your BC Wallet is fast and simple. In the future it can be used online and in person. You approve every use, and share only what is needed. \nIn this demo, you will use your Digital Business Card to prove who you are and access services online instead of in-person.',
+      text: 'Confirmd Wallet is a new app for storing and using credentials on your smartphone. Credentials are things like IDs, licenses and diplomas. \nUsing your Confirmd Walletis fast and simple. In the future it can be used online and in person. You approve every use, and share only what is needed. \nIn this demo, you will use your Digital Business Card to prove who you are and access services online instead of in-person.',
       image: '/public/common/getStarted.svg',
     },
     {
       screenId: 'CHOOSE_WALLET',
-      title: 'Install BC Wallet',
-      text: 'First, install the BC Wallet app onto your smartphone. Select the button below for instructions and the next step.',
+      title: 'Install Confirmd Wallet',
+      text: 'First, install the Confirmd Wallet app onto your smartphone. Select the button below for instructions and the next step.',
       image: '/public/common/app-store-screenshots.png',
     },
     {
       screenId: 'CONNECT',
-      title: 'Connect with BC Registries',
-      text: 'Imagine, as Dave, you are logged into the BC Registries website (see below). They want to offer you a Digital Business Card. Use your BC Wallet to scan the QR code from the website.',
+      title: 'Connect with National Registries',
+      text: 'Imagine, as Dave, you are logged into the National Registries website (see below). They want to offer you a Digital Business Card. Use your Wallet to scan the QR code from the website.',
       image: '/public/student/onboarding-connect-light.svg',
       issuer_name: 'BC Registries',
     },
     {
       screenId: 'ACCEPT_CREDENTIAL',
       title: 'Accept your digital business card',
-      text: "Your wallet now has a secure and private connection with BC Registries. You should have received an offer in BC Wallet for a Digital Business Card.\nReview what they are sending, and choose 'Accept offer'.",
+      text: "Your wallet now has a secure and private connection with National Registries. You should have received an offer in Confirmd Walletfor a Digital Business Card.\nReview what they are sending, and choose 'Accept offer'.",
       image: '/public/common/onboarding-credential-light.svg',
       credentials: [
         {
@@ -155,7 +156,7 @@ export const businessCustom: CustomCharacter = {
         {
           screenId: 'PROOF',
           title: 'Confirm the information to send',
-          text: "BC Wallet will now ask you to confirm what to send. Notice how it will only share if the credential has expired, not even the expiry date itself gets shared. You don't have to share anything else for it to be trustable.",
+          text: "Confirmd Wallet will now ask you to confirm what to send. Notice how it will only share if the credential has expired, not even the expiry date itself gets shared. You don't have to share anything else for it to be trustable.",
           requestOptions: {
             title: 'City of Vancouver',
             text: 'City of Vancouver would like some of your business information.',
@@ -176,6 +177,6 @@ export const businessCustom: CustomCharacter = {
           image: '/public/student/student-accepted.svg',
         },
       ],
-    }
+    },
   ],
 }

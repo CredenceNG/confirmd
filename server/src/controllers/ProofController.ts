@@ -23,7 +23,7 @@ export class ProofController {
 
     const template = {
       accept: ['didcomm/aip1', 'didcomm/aip2;env=rfc19'],
-      alias: 'BC Wallet Showcase',
+      alias: 'Wallet Showcase',
       attachments: [
         {
           id: proofRecord.presentation_exchange_id,
