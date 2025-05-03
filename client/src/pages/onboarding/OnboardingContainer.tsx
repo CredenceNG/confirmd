@@ -202,13 +202,13 @@ export const OnboardingContainer: React.FC<Props> = ({
   const navigate = useNavigate()
   const onboardingCompleted = () => {
     if (connectionId && currentCharacter) {
-      navigate(`${basePath}/dashboard`)
+      navigate(`/dashboard`)
       dispatch(clearCredentials())
       dispatch(clearConnection())
       dispatch(completeOnboarding())
     } else {
       // something went wrong so reset
-      navigate(`${basePath}/`)
+      navigate(`/`)
       dispatch({ type: 'demo/RESET' })
     }
   }
@@ -232,23 +232,22 @@ export const OnboardingContainer: React.FC<Props> = ({
         },
       },
     })
-    navigate(`${basePath}/`)
+    navigate(`/`)
     dispatch({ type: 'demo/RESET' })
   }
 
   return (
-    <>
+    <React.Fragment>
       <motion.div
         className="flex flex-row h-full justify-between bg-white dark:bg-bcgov-darkgrey rounded-lg p-2 w-full sxl:w-5/6 shadow"
         style={style}
       >
-        <div className={`flex flex-col grid justify-items-end ${isMobile ? 'w-full' : 'w-2/3'} px-8`}>
+        <div className={`flex flex-col justify-items-end ${isMobile ? 'w-full' : 'w-2/3'} px-8`}>
           <div className="w-full">
             <motion.button onClick={showLeaveModal} variants={fadeDelay}>
               <FiLogOut className="inline h-12 cursor-pointer dark:text-white" />
             </motion.button>
           </div>
-
           <AnimatePresence mode="wait">{getComponentToRender(onboardingStep)}</AnimatePresence>
           <OnboardingBottomNav
             onboardingStep={onboardingStep}
@@ -264,10 +263,10 @@ export const OnboardingContainer: React.FC<Props> = ({
             <AnimatePresence mode="wait">{getImageToRender(onboardingStep)}</AnimatePresence>
           </div>
         )}
-        {leaveModal && (
-          <Modal title={LEAVE_MODAL_TITLE} description={LEAVE_MODAL_DESCRIPTION} onOk={leave} onCancel={closeLeave} />
-        )}
       </motion.div>
-    </>
+      {leaveModal && (
+        <Modal title={LEAVE_MODAL_TITLE} description={LEAVE_MODAL_DESCRIPTION} onOk={leave} onCancel={closeLeave} />
+      )}
+    </React.Fragment>
   )
 }

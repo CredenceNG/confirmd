@@ -13,7 +13,7 @@
     "@types/lodash": "^4.14.194",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
-    "axios": "^0.26.0",
+    "axios": "^1.5.0",
     "eslint-plugin-cypress": "^3.5.0",
     "framer-motion": "^12.8.0",
     "insights-js": "^1.2.10",
@@ -69,5 +69,5 @@
     "@types/react": "18.3.5",
     "@types/react-dom": "18.3.0"
   },
-  "homepage": "/digital-trust/showcase/"
+  "homepage": "/"
 }

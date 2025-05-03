@@ -27,7 +27,7 @@ export const ConfirmedPersonPage: React.FC = () => {
     if (isCompleted) {
       dispatch(clearCredentials())
       dispatch(clearConnection())
-      navigate(`${basePath}/dashboard`)
+      navigate(`/dashboard`)
     } else {
       setMounted(true)
     }

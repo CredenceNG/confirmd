@@ -41,7 +41,7 @@ export const StartContainer: React.FC<Props> = ({ entity, requestedCredentials, 
         },
       },
     })
-    navigate(`${basePath}/dashboard`)
+    navigate(`/dashboard`)
   }
 
   const next = () => {

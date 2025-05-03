@@ -20,7 +20,7 @@ export const UseCaseContainer: React.FC<Props> = ({ currentCharacter, completedU
   const navigate = useNavigate()
 
   const startUseCase = (slug: string) => {
-    navigate(`${basePath}/uc/${slug}`)
+    navigate(`/uc/${slug}`)
   }
 
   const renderUseCases = currentCharacter.useCases.map((item) => {

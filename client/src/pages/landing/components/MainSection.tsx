@@ -32,9 +32,9 @@ export const MainSection: React.FC = () => {
       },
     })
     if (slug) {
-      navigate(`${basePath}/demo/${slug}`)
+      navigate(`/demo/${slug}`)
     } else {
-      navigate(`${basePath}/demo`)
+      navigate(`/demo`)
     }
   }
 
@@ -49,7 +49,7 @@ export const MainSection: React.FC = () => {
         },
       },
     })
-    navigate(`${basePath}/confirmedperson`)
+    navigate(`/confirmd`)
   }
 
   const renderMobileTitle = (

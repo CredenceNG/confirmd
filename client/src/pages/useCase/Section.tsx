@@ -90,7 +90,7 @@ export const Section: React.FC<Props> = ({
         },
       },
     })
-    navigate(`${basePath}/dashboard`)
+    navigate(`/dashboard`)
     dispatch({ type: 'clearUseCase' })
     dispatch(resetStep())
   }
@@ -99,7 +99,7 @@ export const Section: React.FC<Props> = ({
     if (completed && slug) {
       dispatch(useCaseCompleted(slug))
       dispatch({ type: 'clearUseCase' })
-      navigate(`${basePath}/dashboard`)
+      navigate(`/dashboard`)
       dispatch(resetStep())
       trackSelfDescribingEvent({
         event: {

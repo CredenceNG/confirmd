@@ -28,7 +28,7 @@ export const EndContainer: React.FC<Props> = ({ step }) => {
     if (completed && slug) {
       dispatch(useCaseCompleted(slug))
       dispatch({ type: 'clearUseCase' })
-      navigate(`${basePath}/dashboard`)
+      navigate(`/dashboard`)
       track({
         id: 'use-case-completed',
         parameters: {

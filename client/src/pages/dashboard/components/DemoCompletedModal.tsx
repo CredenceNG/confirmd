@@ -45,23 +45,8 @@ export const DemoCompletedModal: React.FC<Props> = ({ action, cancel }) => {
                   <div className="mt-2 text-sm">
                     <p>{DESCRIPTION}</p>
 
-                    <a
-                      href="https://submit.digital.gov.bc.ca/app/form/submit?f=d61da710-acc3-46fc-b692-111cf6e348de"
-                      target="_blank"
-                    >
-                      <motion.button
-                        whileTap={{ scale: 0.8 }}
-                        className={`bg-bcgov-blue dark:bg-white text-white font-semibold dark:text-bcgov-black my-5 py-2.5 px-10 rounded transition duration-300 ease-in-out transform text-sm shadow-sm`}
-                        data-cy="standard-button"
-                      >
-                        {'Give feedback'}
-                      </motion.button>
-                    </a>
-
                     <br />
-                    <a href="https://animo.id/">
-                      Based on code by <u>Animo</u>
-                    </a>
+
                     <br />
                     <a href="https://storyset.com/business">
                       Business illustrations by <u>Storyset</u>

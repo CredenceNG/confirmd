@@ -16,7 +16,7 @@ once logged in navigate to to the API keys section under the wallet icon to the 
 ![](Pasted%20image%2020241002093928.png)
 Create a new API key and save the key and tenant ID in a password manager. You should only have to do this once when migrating to a new traction agent.
 
-The next thing you'll have to do is setup webhooks for your local environment. Start an ngrok instance on your local machine on port 5000 like so `ngrok http 5000` copy the URL you get in to command window. Go to Settings under the wallet icon, you should see a section where you can add your webhook url. Add the following url to the webhook url textbox: `https://<YOUR_NGROK_URL>/digital-trust/showcase/demo/whook` then in the webhook key generate a random key and paste it in there. Make sure you save the webhook key since we'll need it later. Hit the Save Changes button at the bottom.
+The next thing you'll have to do is setup webhooks for your local environment. Start an ngrok instance on your local machine on port 5000 like so `ngrok http 5000` copy the URL you get in to command window. Go to Settings under the wallet icon, you should see a section where you can add your webhook url. Add the following url to the webhook url textbox: `https://<YOUR_NGROK_URL>//demo/whook` then in the webhook key generate a random key and paste it in there. Make sure you save the webhook key since we'll need it later. Hit the Save Changes button at the bottom.
 ![](Pasted%20image%2020241002095030.png)
 One last thing that needs to be done is to ensure that your traction agent is setup as an issuer. You should see this icon at the top right of your tenant's profile, this means it has the ability to create schemas and cred defs on the ledger.  
 ![](Pasted%20image%2020241002100018.png)
@@ -28,7 +28,7 @@ TENANT_ID=<YOUR_TENNANT_ID>
 API_KEY=<YOUR_API_KEY>
 TRACTION_URL=https://traction-tenant-proxy-test.apps.silver.devops.gov.bc.ca
 TRACTION_DID=<YOUR_AGENTS_DID>
-BASE_ROUTE=/digital-trust/showcase
+BASE_ROUTE=/
 STUDENT_VERSION=1.6
 LAWYER_VERSION=1.54
 PERSON_VERSION=1.3
@@ -41,7 +41,7 @@ In the client folder the .env file should look like this:
 ```bash
 SNOWPLOW_ENDPOINT=spm.apps.gov.bc.ca
 REACT_APP_HOST_BACKEND=http://127.0.0.1:5000
-REACT_APP_BASE_ROUTE=/digital-trust/showcase
+REACT_APP_BASE_ROUTE=/
 REACT_APP_INSIGHTS_PROJECT_ID=
 ```
 

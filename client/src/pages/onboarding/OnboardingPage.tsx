@@ -50,7 +50,7 @@ export const OnboardingPage: React.FC = () => {
       dispatch(completeOnboarding())
       dispatch(clearCredentials())
       dispatch(clearConnection())
-      navigate(`${basePath}/dashboard`)
+      navigate(`/dashboard`)
     } else {
       dispatch(fetchWallets())
       dispatch(fetchAllCharacters())

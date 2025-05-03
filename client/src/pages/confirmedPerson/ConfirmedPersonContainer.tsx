@@ -161,12 +161,12 @@ export const ConfirmedPersonContainer: React.FC<Props> = ({ step, connectionId, 
 
   const onboardingCompleted = () => {
     if (connectionId) {
-      navigate(`${basePath}/dashboard`)
+      navigate(`/dashboard`)
       dispatch(clearCredentials())
       dispatch(clearConnection())
     } else {
       // something went wrong so reset
-      navigate(`${basePath}/`)
+      navigate(`/`)
       dispatch({ type: 'demo/RESET' })
     }
   }
@@ -190,7 +190,7 @@ export const ConfirmedPersonContainer: React.FC<Props> = ({ step, connectionId, 
         },
       },
     })
-    navigate(`${basePath}/`)
+    navigate(`/`)
     dispatch(resetConfirmedPersonFlow())
     dispatch({ type: 'demo/RESET' })
   }

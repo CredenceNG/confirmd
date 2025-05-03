@@ -11,6 +11,10 @@ import { useAnalytics } from './hooks/useAnalytics'
 import { PageNotFound } from './pages/PageNotFound'
 import { ConfirmedPersonPage } from './pages/confirmedPerson/ConfirmedPersonPage'
 import { DashboardPage } from './pages/dashboard/DashboardPage'
+import { AboutUsPage } from './pages/homepage/AboutUsPage'
+import { BusinessPage } from './pages/homepage/BusinessPage'
+import { HomePage } from './pages/homepage/HomePage'
+import { PersonalPage } from './pages/homepage/PersonalPage'
 import { LandingPage } from './pages/landing/LandingPage'
 import { OnboardingPage } from './pages/onboarding/OnboardingPage'
 import { UseCasePage } from './pages/useCase/UseCasePage'
@@ -82,14 +86,17 @@ function App() {
           {isVisible && (
             <motion.div key={location.pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <Routes location={location}>
-                {basePath !== '/' && <Route path="/" element={<Navigate to={basePath} />}></Route>}
-                <Route path={`${basePath}/`} element={<LandingPage />} />
-                <Route path={`${basePath}/:slug`} element={<LandingPage />} />
-                <Route path={`${basePath}/demo`} element={<OnboardingPage />} />
-                <Route path={`${basePath}/demo/:slug`} element={<OnboardingPage />} />
-                <Route path={`${basePath}/confirmedperson`} element={<ConfirmedPersonPage />} />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/personal" element={<PersonalPage />} />
+                <Route path="/business" element={<BusinessPage />} />
+                <Route path="/about" element={<AboutUsPage />} />
+                <Route path="/landing" element={<LandingPage />} />
+                <Route path="/:slug" element={<LandingPage />} />
+                <Route path="/demo" element={<OnboardingPage />} />
+                <Route path="/demo/:slug" element={<OnboardingPage />} />
+                <Route path="/confirmd" element={<ConfirmedPersonPage />} />
                 <Route
-                  path={`${basePath}/dashboard`}
+                  path="/dashboard"
                   element={
                     <PrivateRoute>
                       <DashboardPage />
@@ -97,7 +104,7 @@ function App() {
                   }
                 />
                 <Route
-                  path={`${basePath}/uc/:slug`}
+                  path="/uc/:slug"
                   element={
                     <PrivateRoute>
                       <UseCasePage />

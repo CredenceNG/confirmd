@@ -52,12 +52,12 @@ export const DashboardPage: React.FC = () => {
   const ERROR_TITLE = `Woops...`
   const ERROR_DESCRIPTION = `That's not gone well. Please restart the demo.`
   const routeError = () => {
-    navigate(`${basePath}/demo`)
+    navigate(`/demo`)
     dispatch({ type: 'demo/RESET' })
   }
 
   const completeDemo = () => {
-    navigate(`${basePath}/`)
+    navigate(`/`)
     dispatch({ type: 'demo/RESET' })
 
     if (currentCharacter) {

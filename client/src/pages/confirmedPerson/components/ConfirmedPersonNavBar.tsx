@@ -13,7 +13,7 @@ export const ConfirmedPersonNavBar: React.FC<Props> = ({ step }) => {
     <div className="w-full mb-4">
       <div className="flex flex-row items-center justify-between">
         <Link
-          to={`${basePath}/`}
+          to={`/`}
           className="flex items-center gap-2 px-4 py-2 text-gray-700 dark:text-bcgov-white hover:text-gray-900 transition-colors"
         >
           <FaHome className="h-5 w-5" />

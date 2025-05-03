@@ -201,7 +201,7 @@ export const AcceptCredential: React.FC<Props> = ({
   // Error handling
   const routeError = () => {
     console.log('[AcceptCredential] Routing to home due to error')
-    navigate(`${basePath}/`)
+    navigate(`/`)
     dispatch({ type: 'demo/RESET' })
   }
 

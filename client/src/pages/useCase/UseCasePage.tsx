@@ -73,7 +73,7 @@ export const UseCasePage: React.FC = () => {
   const ERROR_TITLE = `Woops...`
   const ERROR_DESCRIPTION = `You haven't picked your character yet. Please restart the demo.`
   const routeError = () => {
-    navigate(`${basePath}/demo`)
+    navigate(`/demo`)
   }
 
   return (

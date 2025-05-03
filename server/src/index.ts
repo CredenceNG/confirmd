@@ -117,11 +117,11 @@ const run = async () => {
     // Handle errors related to address in use
     server
       .listen(process.env.PORT || 5001, () => {
-        console.log('Server started on port 5001.')
+        console.log('Server started on port ', process.env.PORT)
       })
       .on('error', (err: NodeJS.ErrnoException) => {
         if (err.code === 'EADDRINUSE') {
-          console.error(`Port 5001 is already in use. Please free up the port or try a different one.`)
+          console.error(`Port is already in use. Please free up the port or try a different one:`, process.env.PORT)
           process.exit(1)
         } else {
           console.error(`Error occurred while starting the server: ${err.message}`)

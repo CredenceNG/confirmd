@@ -129,7 +129,7 @@ export const AcceptCredential: React.FC<Props> = ({
   }, [message])
 
   const routeError = () => {
-    navigate(`${basePath}/demo`)
+    navigate(`/demo`)
     dispatch({ type: 'demo/RESET' })
   }
 
