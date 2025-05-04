@@ -26,23 +26,24 @@
     # Enable gzip, zstd compression
     encode zstd gzip
 
-    # Enable templates module - required for 
+    # Enable templates module
     templates
-    
-    vars basePath {$REACT_APP_BASE_ROUTE}
     
     # Health check for openshift
     handle /health {
         respond 200
     }
-    handle {$REACT_APP_BASE_ROUTE}/demo {
-        redir {vars.basePath}
+    
+    # Redirect demo and dashboard to home
+    handle /demo {
+        redir / permanent
     }
-    handle {$REACT_APP_BASE_ROUTE}/dashboard {
-        redir {vars.basePath}
+    
+    handle /dashboard {
+        redir / permanent
     }
-    handle {$REACT_APP_BASE_ROUTE}* {
-        
+    
+    handle /* {
         @websockets {
             header Connection *Upgrade*
             header Upgrade    websocket
@@ -50,9 +51,9 @@
 
         reverse_proxy @websockets backend:5001
 
-         # Required for SPA router to work
+        # Required for SPA router to work
         @spa_router {
-            not path {$REACT_APP_BASE_ROUTE}/demo/* {$REACT_APP_BASE_ROUTE}/server/* {$REACT_APP_BASE_ROUTE}/agent/ready {$REACT_APP_BASE_ROUTE}/public/* {$REACT_APP_BASE_ROUTE}/qr
+            not path /demo/* /server/* /agent/ready /public/* /qr
             file {
                 try_files {path} /index.html
             }
@@ -61,7 +62,7 @@
 
         # pass API requests to backend
         @pass {
-            path {$REACT_APP_BASE_ROUTE}/demo/* {$REACT_APP_BASE_ROUTE}/server/* {$REACT_APP_BASE_ROUTE}/agent/ready {$REACT_APP_BASE_ROUTE}/public/* {$REACT_APP_BASE_ROUTE}/qr
+            path /demo/* /server/* /agent/ready /public/* /qr
         }
 
         # Proxy requests to API service
@@ -70,10 +71,10 @@
             header_up Host {upstream_hostport}
             header_up X-Forwarded-Host {host}
         }
-
-    }
-    handle {
-        redir {vars.basePath}
     }
     
+    # Catch-all handler for any other paths
+    handle {
+        redir / permanent
+    }
 }
