@@ -22,7 +22,7 @@ import { useConnection } from './slices/connection/connectionSelectors'
 import { usePreferences } from './slices/preferences/preferencesSelectors'
 import { setDarkMode } from './slices/preferences/preferencesSlice'
 import { fetchLastServerReset } from './slices/preferences/preferencesThunks'
-import { setMessage } from './slices/socket/socketSlice'
+import { setMessage, setConnectionStatus, setConnectionError } from './slices/socket/socketSlice'
 import { AuthProvider } from './utils/AuthContext'
 import { basePath } from './utils/BasePath'
 import { PrivateRoute } from './utils/PrivateRoute'
@@ -65,14 +65,38 @@ function App() {
   }, [connectionDate, lastServerReset])
 
   useEffect(() => {
-    const ws = io(baseWsUrl, { path: socketPath })
+    // Update connection status to connecting
+    dispatch(setConnectionStatus('connecting'))
+
+    console.log(`Connecting to socket at ${baseWsUrl} with path: ${socketPath}`)
+    const ws = io(baseWsUrl, {
+      path: socketPath,
+      transports: ['websocket', 'polling'], // Try WebSocket first, fallback to polling
+    })
+
     ws.on('connect', () => {
+      console.log('Socket connection established')
+      dispatch(setConnectionStatus('connected'))
       setSocket(ws)
     })
+
+    ws.on('connect_error', (err) => {
+      console.error('Socket connection error:', err.message)
+      dispatch(setConnectionError(`Connection error: ${err.message}`))
+    })
+
     ws.on('message', (data) => {
       dispatch(setMessage(data))
     })
-  }, [])
+
+    // Clean up on unmount
+    return () => {
+      console.log('Cleaning up socket connection')
+      ws.disconnect()
+      dispatch(setConnectionStatus('disconnected'))
+    }
+  }, [dispatch])
+
   useEffect(() => {
     if (!socket || !id) {
       return

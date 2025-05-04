@@ -8,21 +8,24 @@ import { Server } from 'socket.io'
 
 import { tractionApiKeyUpdaterInit, tractionRequest, tractionGarbageCollection } from './utils/tractionHelper'
 
-const baseRoute = process.env.BASE_ROUTE
+// Normalize the base route to prevent double slashes
+const baseRoute = process.env.BASE_ROUTE || ''
+const normalizedBaseRoute = baseRoute.endsWith('/') ? baseRoute.slice(0, -1) : baseRoute
 
 const app: Express = createExpressServer({
   controllers: [__dirname + '/controllers/**/*.ts'],
   cors: true,
-  routePrefix: `${baseRoute}/demo`,
+  routePrefix: `${normalizedBaseRoute}/demo`,
 })
 
 const server = http.createServer(app)
 
+// Configure socket server with normalized path
 const ws = new Server(server, {
   cors: {
     origin: true,
   },
-  path: `${baseRoute}/demo/socket/`,
+  path: `${normalizedBaseRoute}/demo/socket/`,
 })
 
 const socketMap = new Map()
