@@ -10,7 +10,6 @@ import { fadeExit } from '../../../FramerAnimations'
 import { Button } from '../../../components/Button'
 import { useAppDispatch } from '../../../hooks/hooks'
 import { useCaseCompleted } from '../../../slices/preferences/preferencesSlice'
-import { basePath } from '../../../utils/BasePath'
 
 export interface Props {
   step: UseCaseScreen

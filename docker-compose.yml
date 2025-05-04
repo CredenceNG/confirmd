@@ -1,6 +1,9 @@
-version: '3.9'
+networks:
+  traefik-network:
+    external: true
+
 services:
-  frontend:
+  confirmd_frontend:
     image: bc-wallet-demo-web
     build:
       context: ./
@@ -12,25 +15,61 @@ services:
     ports:
       - '3000:3000'
     depends_on:
-      - backend
+      - confirmd_backend
+
     env_file:
       - ./client/.env
-  backend:
+    labels:
+      #Traefik
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=traefik-network'
+      #Routers
+      - 'traefik.http.routers.confirmd_frontend.rule=Host(`getconfirmd.com`)'
+      - 'traefik.http.routers.confirmd_frontend.entrypoints=websecure'
+      - 'traefik.http.routers.confirmd_frontend.service=confirmd_frontend'
+
+      - 'traefik.http.routers.confirmd_frontend.tls=true'
+      - 'traefik.http.routers.confirmd_frontend.tls.certresolver=letsencrypt'
+      - 'traefik.docker.network=traefik-network'
+
+      - 'traefik.http.services.confirmd_frontend.loadbalancer.passhostheader=true'
+      - 'traefik.http.routers.confirmd_frontend.middlewares=compresstraefik'
+      - 'traefik.http.middlewares.compresstraefik.compress=true'
+
+      # Services
+      - 'traefik.http.services.confirmd_frontend.loadbalancer.server.port=3000'
+
+    networks:
+      - traefik-network
+
+  confirmd_backend:
     image: bc-wallet-demo-server
     build:
       context: ./
       dockerfile: ./server/Dockerfile
     ports:
-      - '5000:5000'
+      - '5555:5511'
     env_file:
       - ./server/.env
-  dev:
-    image: bc-wallet-demo-dev
-    build:
-      context: ./
-      dockerfile: ./dev.dockerfile
-    ports:
-      - '3000:3000'
-      - '5000:5000'
-    volumes:
-      - ./:/app
+    labels:
+      #Traefik
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=traefik-network'
+      #Routers
+      - 'traefik.http.routers.confirmd_backend.rule=Host(`api.getconfirmd.com`)'
+      - 'traefik.http.routers.confirmd_backend.entrypoints=websecure'
+      - 'traefik.http.routers.confirmd_backend.service=confirmd_backend'
+
+      - 'traefik.http.routers.confirmd_backend.tls=true'
+      - 'traefik.http.routers.confirmd_backend.tls.certresolver=letsencrypt'
+      - 'traefik.docker.network=traefik-network'
+
+      - 'traefik.http.services.confirmd_backend.loadbalancer.passhostheader=true'
+      - 'traefik.http.routers.confirmd_backend.middlewares=compresstraefik'
+      - 'traefik.http.middlewares.compresstraefik.compress=true'
+
+      # Services
+      - 'traefik.http.services.confirmd_backend.loadbalancer.server.port=5511'
+
+    networks:
+      - traefik-network
