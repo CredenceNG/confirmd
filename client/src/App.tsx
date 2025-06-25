@@ -6,6 +6,7 @@ import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-
 import { io } from 'socket.io-client'
 
 import { baseWsUrl, socketPath } from './api/BaseUrl'
+import { BehaviorTracker } from './components/BehaviorTracker'
 import { useAppDispatch } from './hooks/hooks'
 import { useAnalytics } from './hooks/useAnalytics'
 import { PageNotFound } from './pages/PageNotFound'
@@ -107,41 +108,53 @@ function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <AnimatePresence mode="wait">
-          {isVisible && (
-            <motion.div key={location.pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <Routes location={location}>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/personal" element={<PersonalPage />} />
-                <Route path="/business" element={<BusinessPage />} />
-                <Route path="/about" element={<AboutUsPage />} />
-                <Route path="/contact" element={<ContactUsPage />} />
-                <Route path="/landing" element={<LandingPage />} />
-                <Route path="/:slug" element={<LandingPage />} />
-                <Route path="/demo" element={<OnboardingPage />} />
-                <Route path="/demo/:slug" element={<OnboardingPage />} />
-                <Route path="/confirmd" element={<ConfirmedPersonPage />} />
-                <Route
-                  path="/dashboard"
-                  element={
-                    <PrivateRoute>
-                      <DashboardPage />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="/uc/:slug"
-                  element={
-                    <PrivateRoute>
-                      <UseCasePage />
-                    </PrivateRoute>
-                  }
-                />
-                <Route path="*" element={<PageNotFound />} />
-              </Routes>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <BehaviorTracker
+          enableTimeTracking={true}
+          enableScrollTracking={true}
+          trackInteractions={true}
+          autoSendInterval={30000} // Send data every 30 seconds
+        >
+          <AnimatePresence mode="wait">
+            {isVisible && (
+              <motion.div
+                key={location.pathname}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <Routes location={location}>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/personal" element={<PersonalPage />} />
+                  <Route path="/business" element={<BusinessPage />} />
+                  <Route path="/about" element={<AboutUsPage />} />
+                  <Route path="/contact" element={<ContactUsPage />} />
+                  <Route path="/landing" element={<LandingPage />} />
+                  <Route path="/:slug" element={<LandingPage />} />
+                  <Route path="/demo" element={<OnboardingPage />} />
+                  <Route path="/demo/:slug" element={<OnboardingPage />} />
+                  <Route path="/confirmd" element={<ConfirmedPersonPage />} />
+                  <Route
+                    path="/dashboard"
+                    element={
+                      <PrivateRoute>
+                        <DashboardPage />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route
+                    path="/uc/:slug"
+                    element={
+                      <PrivateRoute>
+                        <UseCasePage />
+                      </PrivateRoute>
+                    }
+                  />
+                  <Route path="*" element={<PageNotFound />} />
+                </Routes>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </BehaviorTracker>
       </AuthProvider>
     </ThemeProvider>
   )

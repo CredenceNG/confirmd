@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { persistReducer } from 'redux-persist'
 
+import behaviorSlice from './behavior/behaviorSlice'
 import charactersSlice from './characters/charactersSlice'
 import confirmedPersonSlice from './confirmedPerson/confirmedPersonSlice'
 import connectionSlice from './connection/connectionSlice'
@@ -27,6 +28,7 @@ const appReducer = combineReducers({
   section: sectionSlice,
   useCases: useCaseSlice,
   confirmedPerson: confirmedPersonSlice,
+  behavior: behaviorSlice,
 })
 
 // Updated rootReducer with proper TypeScript types

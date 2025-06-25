@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { page } from '../../FramerAnimations'
@@ -7,10 +7,14 @@ import { sendContactForm, type ContactFormData } from '../../api/ContactApi'
 import { Breadcrumb } from '../../components/Breadcrumb'
 import { Footer } from '../../components/Footer'
 import { Header } from '../../components/Header'
+import { useBehaviorTracking } from '../../hooks/useBehaviorTracking'
 import { useTitle } from '../../hooks/useTitle'
+import * as GA from '../../utils/GoogleAnalytics'
 
 export const ContactUsPage: React.FC = () => {
   useTitle('Confirmed Person - Contact Us')
+
+  const { trackContactFormStart, trackContactFormSubmit, trackContactFormAbandon, addUserTag } = useBehaviorTracking()
 
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
@@ -25,9 +29,51 @@ export const ContactUsPage: React.FC = () => {
     type: 'success' | 'error' | null
     message: string
   }>({ type: null, message: '' })
+  const [hasStartedForm, setHasStartedForm] = useState(false)
+
+  // Track when user starts the contact form
+  useEffect(() => {
+    trackContactFormStart()
+    addUserTag('page_visited', 'contact', 'page_view')
+    // Track page view in Google Analytics
+    GA.trackPageView('/contact', 'Contact Us - Confirmed Person', {
+      page_section: 'contact',
+      user_intent: 'contact_inquiry',
+    })
+  }, [trackContactFormStart, addUserTag])
+
+  const getFormProgress = () => {
+    const fields = ['name', 'email', 'subject', 'message']
+    const filledFields = fields.filter((field) => formData[field as keyof ContactFormData]?.toString().trim() !== '')
+    return (filledFields.length / fields.length) * 100
+  }
+
+  // Track form abandonment on page leave
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (hasStartedForm && !submitStatus.type) {
+        trackContactFormAbandon({ formProgress: getFormProgress() })
+      }
+    }
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+  }, [hasStartedForm, submitStatus.type, trackContactFormAbandon, formData, getFormProgress])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
+
+    // Track that user has started filling the form
+    if (!hasStartedForm && value.trim() !== '') {
+      setHasStartedForm(true)
+      addUserTag('contact_form_started', true, 'user_interaction')
+      // Track form start in Google Analytics
+      GA.trackFormInteraction('contact-form', 'start', {
+        field_name: name,
+        form_section: 'contact',
+      })
+    }
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -39,6 +85,22 @@ export const ContactUsPage: React.FC = () => {
     setIsSubmitting(true)
     setSubmitStatus({ type: null, message: '' })
 
+    // Track form submission attempt
+    trackContactFormSubmit({
+      hasName: !!formData.name,
+      hasPhone: !!formData.phone,
+      subject: formData.subject,
+      messageLength: formData.message.length,
+    })
+
+    // Track form submission in Google Analytics
+    GA.trackFormInteraction('contact-form', 'submit', {
+      form_fields_completed: getFormProgress(),
+      subject_category: formData.subject,
+      has_phone: !!formData.phone,
+      message_length: formData.message.length,
+    })
+
     try {
       const response = await sendContactForm(formData)
       if (response.data.success) {
@@ -46,6 +108,20 @@ export const ContactUsPage: React.FC = () => {
           type: 'success',
           message: response.data.message,
         })
+
+        // Track successful submission
+        addUserTag('contact_form_completed', true, 'conversion')
+        addUserTag('contact_subject', formData.subject, 'user_data')
+
+        // Track conversion in Google Analytics
+        GA.trackConversion('contact_form_submission', 1, 'USD')
+        GA.trackCustomEvent('form_completion', {
+          form_name: 'contact-form',
+          form_type: 'lead_generation',
+          subject_category: formData.subject,
+          completion_rate: 100,
+        })
+
         // Reset form
         setFormData({
           name: '',
@@ -54,6 +130,7 @@ export const ContactUsPage: React.FC = () => {
           subject: '',
           message: '',
         })
+        setHasStartedForm(false)
       } else {
         setSubmitStatus({
           type: 'error',
