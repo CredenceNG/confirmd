@@ -17,7 +17,7 @@ The system is configured to use Brevo (formerly Sendinblue) SMTP service with th
 SMTP-Server=smtp-relay.brevo.com
 SMTP-Port=587
 SMTP-Login=905c35001@smtp-brevo.com
-SMTP-APIKEY=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
+SMTP-APIKEY=
 ADMIN_EMAIL=hello@confirmedperson.com
 ```
 
