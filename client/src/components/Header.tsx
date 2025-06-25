@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 interface HeaderProps {
-  activePage?: 'personal' | 'business' | 'about'
+  activePage?: 'personal' | 'business' | 'about' | 'contact'
 }
 
 export const Header: React.FC<HeaderProps> = ({ activePage }) => {
@@ -40,6 +40,14 @@ export const Header: React.FC<HeaderProps> = ({ activePage }) => {
               }`}
             >
               About Us
+            </Link>
+            <Link
+              to="/contact"
+              className={`text-white hover:text-orange-400 transition font-medium ${
+                activePage === 'contact' ? 'underline' : ''
+              }`}
+            >
+              Contact
             </Link>
           </nav>
           <div className="flex space-x-4">

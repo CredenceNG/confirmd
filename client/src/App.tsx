@@ -13,6 +13,7 @@ import { ConfirmedPersonPage } from './pages/confirmedPerson/ConfirmedPersonPage
 import { DashboardPage } from './pages/dashboard/DashboardPage'
 import { AboutUsPage } from './pages/homepage/AboutUsPage'
 import { BusinessPage } from './pages/homepage/BusinessPage'
+import { ContactUsPage } from './pages/homepage/ContactUsPage'
 import { HomePage } from './pages/homepage/HomePage'
 import { PersonalPage } from './pages/homepage/PersonalPage'
 import { LandingPage } from './pages/landing/LandingPage'
@@ -114,6 +115,7 @@ function App() {
                 <Route path="/personal" element={<PersonalPage />} />
                 <Route path="/business" element={<BusinessPage />} />
                 <Route path="/about" element={<AboutUsPage />} />
+                <Route path="/contact" element={<ContactUsPage />} />
                 <Route path="/landing" element={<LandingPage />} />
                 <Route path="/:slug" element={<LandingPage />} />
                 <Route path="/demo" element={<OnboardingPage />} />

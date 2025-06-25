@@ -32,9 +32,9 @@ export const AboutUsPage: React.FC = () => {
                 Our <span className="text-orange-600">mission</span>
               </h1>
               <p className="text-lg text-blue-800 mb-8 leading-relaxed">
-                At Confirmed Person, we're on a mission to revolutionize digital identity. We believe that individuals
-                should have control over their personal data while businesses can verify credentials with unprecedented
-                ease and security.
+                At Confirmed Person, we're on a mission to revolutionize Credentialling in Africa. We believe that
+                individuals should have control over their personal credentials (infact, their data) while businesses
+                can verify credentials with unprecedented ease and security.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <Link
@@ -54,88 +54,8 @@ export const AboutUsPage: React.FC = () => {
             <div className="md:w-1/2 md:pl-10">
               <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
                 <div className="bg-blue-50 rounded-lg p-8 flex justify-center items-center">
-                  <img src="/confirmd-300.png" alt="Confirmed Person Logo" className="max-w-full h-auto" />
+                  <img src="/credence-image.png" alt="Confirmed Person Logo" className="max-w-full h-auto" />
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Story Section */}
-      <section className="py-16 bg-white border-t border-gray-200">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-12 text-blue-800">
-            Our <span className="text-orange-600">story</span>
-          </h2>
-
-          <div className="space-y-12">
-            {/* Timeline Item 1 */}
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="md:w-1/3 mb-8 md:mb-0">
-                <div className="bg-blue-50 p-6 rounded-xl h-full">
-                  <h3 className="text-2xl font-semibold text-blue-800 mb-2">2018</h3>
-                  <p className="text-blue-800 font-medium">The Beginning</p>
-                </div>
-              </div>
-              <div className="md:w-2/3 md:pl-10">
-                <p className="text-blue-800 leading-relaxed">
-                  Confirmed Person was founded by a team of identity security experts who saw a critical gap in how
-                  digital identities were managed. With the rise of online fraud and identity theft, we set out to
-                  create a solution that would empower individuals while providing businesses with reliable verification
-                  tools.
-                </p>
-              </div>
-            </div>
-
-            {/* Timeline Item 2 */}
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="md:w-1/3 mb-8 md:mb-0">
-                <div className="bg-orange-50 p-6 rounded-xl h-full">
-                  <h3 className="text-2xl font-semibold text-blue-800 mb-2">2020</h3>
-                  <p className="text-blue-800 font-medium">First Major Implementation</p>
-                </div>
-              </div>
-              <div className="md:w-2/3 md:pl-10">
-                <p className="text-blue-800 leading-relaxed">
-                  Our first major client implementation marked a turning point for Confirmed Person. Working with a
-                  leading financial institution, we demonstrated how our decentralized identity solution could reduce
-                  onboarding time by 75% while enhancing security and compliance.
-                </p>
-              </div>
-            </div>
-
-            {/* Timeline Item 3 */}
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="md:w-1/3 mb-8 md:mb-0">
-                <div className="bg-teal-50 p-6 rounded-xl h-full">
-                  <h3 className="text-2xl font-semibold text-blue-800 mb-2">2023</h3>
-                  <p className="text-blue-800 font-medium">Global Expansion</p>
-                </div>
-              </div>
-              <div className="md:w-2/3 md:pl-10">
-                <p className="text-blue-800 leading-relaxed">
-                  After successful implementations across North America, we expanded our operations to Europe and Asia.
-                  Our platform now supports multiple languages and regulatory frameworks, making it a truly global
-                  identity solution.
-                </p>
-              </div>
-            </div>
-
-            {/* Timeline Item 4 */}
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="md:w-1/3 mb-8 md:mb-0">
-                <div className="bg-blue-50 p-6 rounded-xl h-full">
-                  <h3 className="text-2xl font-semibold text-blue-800 mb-2">Today</h3>
-                  <p className="text-blue-800 font-medium">Industry Leader</p>
-                </div>
-              </div>
-              <div className="md:w-2/3 md:pl-10">
-                <p className="text-blue-800 leading-relaxed">
-                  Confirmed Person is now recognized as a leader in digital identity solutions, serving thousands of
-                  businesses and millions of users worldwide. Our commitment to innovation, security, and user control
-                  remains at the core of everything we do.
-                </p>
               </div>
             </div>
           </div>
@@ -287,7 +207,7 @@ export const AboutUsPage: React.FC = () => {
 
           <div className="text-center mt-12">
             <Link
-              to="/team"
+              to="/contact"
               className="inline-block px-8 py-3 border-2 border-blue-800 text-blue-800 font-semibold rounded-full hover:bg-blue-50 transition"
             >
               View Full Team
@@ -311,7 +231,7 @@ export const AboutUsPage: React.FC = () => {
               Contact Us
             </Link>
             <Link
-              to="/careers"
+              to="/contact"
               className="inline-block px-8 py-3 bg-white text-blue-800 font-semibold rounded-full hover:bg-gray-100 transition shadow-lg"
             >
               View Open Positions

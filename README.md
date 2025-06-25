@@ -49,6 +49,19 @@ Start the client:
 
 The application will now be running at http://localhost:3000
 
+## Features
+
+### Contact Form
+
+The application includes a contact form accessible at `/contact` that allows users to:
+
+- Send inquiries to the admin team
+- Select from predefined subjects (General Inquiry, Product Demo, Partnership, Technical Support, etc.)
+- Provide contact details including name, email, phone (optional), and message
+- Receive confirmation of successful submission
+
+The contact form integrates with the backend API endpoint `/demo/contact/send-email` which validates input data and simulates email sending functionality. In a production environment, this would be connected to an actual email service provider like SendGrid, AWS SES, or similar.
+
 ## Contributing
 
 **Pull requests are always welcome!**

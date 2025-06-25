@@ -29,10 +29,10 @@ export const BusinessPage: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-10 md:mb-0">
               <h1 className="text-4xl md:text-5xl font-bold text-blue-800 mb-6">
-                Trusted identity <span className="text-orange-600">for business</span>
+                Trusted Digital Credentials <span className="text-orange-600">for your business</span>
               </h1>
               <p className="text-lg text-blue-800 mb-8 leading-relaxed">
-                Transform your business operations with secure digital identity solutions. Reduce fraud, streamline
+                Transform your business operations with secure Digital Credential solutions. Reduce fraud, streamline
                 onboarding, and build customer trust with verifiable credentials.
               </p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
@@ -50,12 +50,12 @@ export const BusinessPage: React.FC = () => {
                 </Link>
               </div>
             </div>
-            <div className="md:w-1/2 md:pl-10">
-              <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
-                <div className="bg-blue-50 rounded-lg p-8 flex justify-center items-center">
-                  <img src="/confirmd-300.png" alt="Digital ID" className="max-w-full h-auto" />
-                </div>
-              </div>
+            <div className="md:w-1/3 md:pl-10">
+              {/* <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6"> */}
+              {/* <div className="bg-blue-50 rounded-lg p-8 flex justify-center items-center"> */}
+              <img src="/confirmd-real-mock.png" alt="Digital ID" className="max-w-full h-auto" />
+              {/* </div> */}
+              {/* </div> */}
             </div>
           </div>
         </div>
@@ -500,7 +500,7 @@ export const BusinessPage: React.FC = () => {
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-3xl font-bold mb-6 text-white">Ready to transform your business?</h2>
           <p className="text-xl mb-8 text-white">
-            Join industry leaders who trust Confirmed Person for their business identity verification needs.
+            Join industry leaders who trust Confirmed Person for their Customer Credential verification needs.
           </p>
           <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <Link

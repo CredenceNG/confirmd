@@ -50,12 +50,12 @@ export const HomePage: React.FC = () => {
                 </Link>
               </div>
             </div>
-            <div className="md:w-1/2 md:pl-10">
-              <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
-                <div className="bg-blue-50 rounded-lg p-8 flex justify-center items-center">
-                  <img src="/confirmd-300.png" alt="Digital ID" className="max-w-full h-auto" />
-                </div>
-              </div>
+            <div className="md:w-2/5 md:pl-10">
+              {/* <div className="bg-blue-50 rounded-xl shadow-lg border border-gray-200 p-6"> */}
+              {/* <div className="bg-blue-50 rounded-lg p-8 flex justify-center items-center"> */}
+              <img src="/confirmd-colord.png" alt="Digital ID" className="max-w-full h-auto" />
+              {/* </div> */}
+              {/* </div> */}
             </div>
           </div>
         </div>
@@ -149,7 +149,7 @@ export const HomePage: React.FC = () => {
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl font-bold text-center mb-4 text-blue-800">How it works</h2>
           <p className="text-center text-blue-800 mb-12 max-w-2xl mx-auto">
-            Confirmed Person makes managing your digital identity simple and intuitive
+            Confirmed Person makes managing your Digital Credentials simple and intuitive
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -160,7 +160,7 @@ export const HomePage: React.FC = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3 text-blue-800">Download the app</h3>
               <p className="text-blue-800">
-                Get started with our secure digital wallet app available on iOS and Android.
+                Get started with our secure Digital Trust Wallet app now available on iOS and Android.
               </p>
             </div>
 
@@ -171,7 +171,7 @@ export const HomePage: React.FC = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3 text-blue-800">Verify your identity</h3>
               <p className="text-blue-800">
-                Complete a simple verification process to receive your digital credentials.
+                Complete a simple verification process to receive your Digital Credentials.
               </p>
             </div>
 
@@ -182,7 +182,7 @@ export const HomePage: React.FC = () => {
               </div>
               <h3 className="text-xl font-semibold mb-3 text-blue-800">Use anywhere</h3>
               <p className="text-blue-800">
-                Securely share your verified identity with services that accept Confirmed Person.
+                Securely share your Confirmed Credentials with private and govt services without hassles.
               </p>
             </div>
           </div>
@@ -192,7 +192,7 @@ export const HomePage: React.FC = () => {
       {/* Investors & Partners */}
       <section className="py-16 px-4 bg-white border-t border-gray-200">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-12 text-blue-800">Our partners & investors</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-blue-800">Our Community members and Partners</h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {/* Partner logos would go here - using placeholder boxes */}
@@ -227,9 +227,9 @@ export const HomePage: React.FC = () => {
       {/* Call to Action - Blue background with white text */}
       <section className="py-20 px-4 bg-blue-800">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl font-bold mb-6 text-white">Ready to take control of your digital identity?</h2>
+          <h2 className="text-3xl font-bold mb-6 text-white">Ready to take control of your Digital Credentials?</h2>
           <p className="text-xl mb-8 text-white">
-            Join thousands of users who trust Confirmed Person for their identity needs.
+            Join thousands of users who trust Confirmed Person for their Digital Credential needs.
           </p>
           <Link
             to="/demo"
