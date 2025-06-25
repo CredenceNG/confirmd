@@ -62,7 +62,34 @@ The application includes a contact form accessible at `/contact` that allows use
 
 The contact form integrates with the backend API endpoint `/demo/contact/send-email` which validates input data and simulates email sending functionality. In a production environment, this would be connected to an actual email service provider like SendGrid, AWS SES, or similar.
 
-## Contributing
+## Security
+
+**⚠️ IMPORTANT SECURITY NOTICE:**
+
+This repository uses environment variables for sensitive configuration. Before running the application:
+
+1. **Never commit `.env` files** - They contain sensitive API keys and credentials
+2. **Copy example files**: `cp server/.env.example server/.env` and `cp client/.env.example client/.env`
+3. **Update credentials**: Replace placeholder values in `.env` files with your actual credentials
+4. **Use the pre-commit hook**: `cp pre-commit-hook.sh .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit`
+
+### Required Environment Variables
+
+See `.env.example` files for the complete list of required environment variables including:
+
+- Traction API credentials
+- SMTP configuration for email functionality
+- Webhook secrets
+- Application configuration
+
+## API
+
+### Contact Form API
+
+- `POST /demo/contact/send-email` - Submit contact form with email notification
+- `GET /demo/contact/test-smtp` - Test SMTP connection (development only)
+
+For complete API documentation, see the individual controller files in `server/src/controllers/`.
 
 **Pull requests are always welcome!**
 
