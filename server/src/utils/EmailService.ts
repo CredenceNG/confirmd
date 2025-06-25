@@ -1,71 +1,71 @@
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer'
 
 export interface EmailOptions {
-  to: string;
-  subject: string;
-  html: string;
-  replyTo?: string;
+  to: string
+  subject: string
+  html: string
+  replyTo?: string
 }
 
 export class EmailService {
-  private transporter: nodemailer.Transporter;
+  private transporter: nodemailer.Transporter
 
   public constructor() {
     // Log the configuration being used (without exposing sensitive data)
-    console.log("SMTP Configuration:", {
-      host: process.env["SMTP-Server"] || "smtp-relay.brevo.com",
-      port: parseInt(process.env["SMTP-Port"] || "587"),
-      user: process.env["SMTP-Login"] || "",
-      hasApiKey: !!(process.env["SMTP-APIKEY"] || ""),
-    });
+    console.log('SMTP Configuration:', {
+      host: process.env['SMTP-Server'] || 'smtp-relay.brevo.com',
+      port: parseInt(process.env['SMTP-Port'] || '587'),
+      user: process.env['SMTP-Login'] || '',
+      hasApiKey: !!(process.env['SMTP-APIKEY'] || ''),
+    })
 
     // Create transporter using the SMTP configuration from environment variables
     this.transporter = nodemailer.createTransport({
-      host: process.env["SMTP-Server"] || "smtp-relay.brevo.com",
-      port: parseInt(process.env["SMTP-Port"] || "587"),
+      host: process.env['SMTP-Server'] || 'smtp-relay.brevo.com',
+      port: parseInt(process.env['SMTP-Port'] || '587'),
       secure: false, // true for 465, false for other ports
       auth: {
-        user: process.env["SMTP-Login"] || "",
-        pass: process.env["SMTP-APIKEY"] || "",
+        user: process.env['SMTP-Login'] || '',
+        pass: process.env['SMTP-APIKEY'] || '',
       },
       tls: {
         rejectUnauthorized: false, // Accept self-signed certificates
       },
       debug: false, // Disable debug logging for now
       logger: false, // Disable logging
-    });
+    })
   }
 
   public async sendEmail(options: EmailOptions): Promise<boolean> {
     try {
       const mailOptions = {
         from: {
-          name: "Confirmed Person Contact Form",
-          address: process.env["SMTP-Login"] || "noreply@confirmedperson.com",
+          name: 'Confirmed Person Contact Form',
+          address: process.env['SMTP-Login'] || 'noreply@confirmedperson.com',
         },
         to: options.to,
         subject: options.subject,
         html: options.html,
         replyTo: options.replyTo,
-      };
+      }
 
-      const info = await this.transporter.sendMail(mailOptions);
-      console.log("Email sent successfully:", info.messageId);
-      return true;
+      const info = await this.transporter.sendMail(mailOptions)
+      console.log('Email sent successfully:', info.messageId)
+      return true
     } catch (error) {
-      console.error("Failed to send email:", error);
-      return false;
+      console.error('Failed to send email:', error)
+      return false
     }
   }
 
   public async sendContactFormEmail(formData: {
-    name: string;
-    email: string;
-    phone?: string;
-    subject: string;
-    message: string;
+    name: string
+    email: string
+    phone?: string
+    subject: string
+    message: string
   }): Promise<boolean> {
-    const adminEmail = process.env.ADMIN_EMAIL || "hello@confirmedperson.com"; // Configurable via env var
+    const adminEmail = process.env.ADMIN_EMAIL || 'hello@confirmedperson.com' // Configurable via env var
 
     const htmlContent = `
       <!DOCTYPE html>
@@ -106,7 +106,7 @@ export class EmailService {
               <div class="field-value">${formData.phone}</div>
             </div>
             `
-                : ""
+                : ''
             }
             <div class="field">
               <div class="field-label">Subject:</div>
@@ -114,10 +114,7 @@ export class EmailService {
             </div>
             <div class="field">
               <div class="field-label">Message:</div>
-              <div class="field-value">${formData.message.replace(
-                /\n/g,
-                "<br>"
-              )}</div>
+              <div class="field-value">${formData.message.replace(/\n/g, '<br>')}</div>
             </div>
             <div class="field">
               <div class="field-label">Submitted on:</div>
@@ -126,31 +123,29 @@ export class EmailService {
           </div>
           <div class="footer">
             <p>This email was sent automatically from the Confirmed Person contact form.</p>
-            <p>Please reply directly to ${
-              formData.email
-            } to respond to this inquiry.</p>
+            <p>Please reply directly to ${formData.email} to respond to this inquiry.</p>
           </div>
         </div>
       </body>
       </html>
-    `;
+    `
 
     return this.sendEmail({
       to: adminEmail,
       subject: `Contact Form: ${formData.subject} - From ${formData.name}`,
       html: htmlContent,
       replyTo: formData.email,
-    });
+    })
   }
 
   public async testConnection(): Promise<boolean> {
     try {
-      await this.transporter.verify();
-      console.log("SMTP connection verified successfully");
-      return true;
+      await this.transporter.verify()
+      console.log('SMTP connection verified successfully')
+      return true
     } catch (error) {
-      console.error("SMTP connection failed:", error);
-      return false;
+      console.error('SMTP connection failed:', error)
+      return false
     }
   }
 }
