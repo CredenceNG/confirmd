@@ -18,6 +18,7 @@ import { ContactUsPage } from './pages/homepage/ContactUsPage'
 import { HomePage } from './pages/homepage/HomePage'
 import { PersonalPage } from './pages/homepage/PersonalPage'
 import { LandingPage } from './pages/landing/LandingPage'
+import { TermsAndConditionsPage, PrivacyPolicyPage, CookiesPolicyPage, CareersPage } from './pages/legal'
 import { OnboardingPage } from './pages/onboarding/OnboardingPage'
 import { UseCasePage } from './pages/useCase/UseCasePage'
 import { useConnection } from './slices/connection/connectionSelectors'
@@ -128,6 +129,10 @@ function App() {
                   <Route path="/business" element={<BusinessPage />} />
                   <Route path="/about" element={<AboutUsPage />} />
                   <Route path="/contact" element={<ContactUsPage />} />
+                  <Route path="/terms" element={<TermsAndConditionsPage />} />
+                  <Route path="/privacy" element={<PrivacyPolicyPage />} />
+                  <Route path="/cookies" element={<CookiesPolicyPage />} />
+                  <Route path="/careers" element={<CareersPage />} />
                   <Route path="/landing" element={<LandingPage />} />
                   <Route path="/:slug" element={<LandingPage />} />
                   <Route path="/demo" element={<OnboardingPage />} />

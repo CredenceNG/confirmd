@@ -7,7 +7,6 @@ import { Breadcrumb } from '../../components/Breadcrumb'
 import { Footer } from '../../components/Footer'
 import { Header } from '../../components/Header'
 import { useTitle } from '../../hooks/useTitle'
-import { basePath } from '../../utils/BasePath'
 
 export const HomePage: React.FC = () => {
   useTitle('Confirmd - Last Mile Digital Solutions')
@@ -189,37 +188,91 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Investors & Partners */}
+      {/* Community Members & Partners */}
       <section className="py-16 px-4 bg-white border-t border-gray-200">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl font-bold text-center mb-12 text-blue-800">Our Community members and Partners</h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {/* Partner logos would go here - using placeholder boxes */}
-            <div className="bg-gray-50 border border-gray-200 rounded-lg h-24 flex items-center justify-center">
-              <div className="text-gray-400 font-medium">Partner 1</div>
-            </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg h-24 flex items-center justify-center">
-              <div className="text-gray-400 font-medium">Partner 2</div>
-            </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg h-24 flex items-center justify-center">
-              <div className="text-gray-400 font-medium">Partner 3</div>
-            </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg h-24 flex items-center justify-center">
-              <div className="text-gray-400 font-medium">Partner 4</div>
-            </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg h-24 flex items-center justify-center">
-              <div className="text-gray-400 font-medium">Partner 5</div>
-            </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg h-24 flex items-center justify-center">
-              <div className="text-gray-400 font-medium">Partner 6</div>
-            </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg h-24 flex items-center justify-center">
-              <div className="text-gray-400 font-medium">Partner 7</div>
-            </div>
-            <div className="bg-gray-50 border border-gray-200 rounded-lg h-24 flex items-center justify-center">
-              <div className="text-gray-400 font-medium">Partner 8</div>
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {/* Linux Foundation */}
+            <a
+              href="https://www.linuxfoundation.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white border border-gray-200 rounded-lg h-24 flex items-center justify-center hover:shadow-lg transition-shadow p-4"
+            >
+              <img
+                src="https://www.linuxfoundation.org/hubfs/lf-stacked-color.svg"
+                alt="Linux Foundation"
+                className="max-h-16 max-w-full object-contain"
+              />
+            </a>
+
+            {/* W3C */}
+            <a
+              href="https://www.w3.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white border border-gray-200 rounded-lg h-24 flex items-center justify-center hover:shadow-lg transition-shadow p-4"
+            >
+              <img
+                src="https://www.w3.org/assets/logos/w3c/w3c-no-bars.svg"
+                alt="W3C"
+                className="max-h-12 max-w-full object-contain"
+              />
+            </a>
+
+            {/* Hyperledger Aries */}
+            <a
+              href="https://www.hyperledger.org/use/aries"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white border border-gray-200 rounded-lg h-24 flex items-center justify-center hover:shadow-lg transition-shadow p-4"
+            >
+              <div className="text-center">
+                <div className="text-blue-700 font-bold text-lg">Hyperledger</div>
+                <div className="text-blue-700 font-semibold text-sm">Aries</div>
+              </div>
+            </a>
+
+            {/* Hyperledger Indy */}
+            <a
+              href="https://www.hyperledger.org/use/hyperledger-indy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white border border-gray-200 rounded-lg h-24 flex items-center justify-center hover:shadow-lg transition-shadow p-4"
+            >
+              <div className="text-center">
+                <div className="text-blue-700 font-bold text-lg">Hyperledger</div>
+                <div className="text-blue-700 font-semibold text-sm">Indy</div>
+              </div>
+            </a>
+
+            {/* OpenWallet Foundation */}
+            <a
+              href="https://openwallet.foundation/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white border border-gray-200 rounded-lg h-24 flex items-center justify-center hover:shadow-lg transition-shadow p-4"
+            >
+              <div className="text-center">
+                <div className="text-green-600 font-bold text-sm">OpenWallet</div>
+                <div className="text-green-600 font-semibold text-sm">Foundation</div>
+              </div>
+            </a>
+
+            {/* DIDComm */}
+            <a
+              href="https://identity.foundation/didcomm-messaging/spec/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white border border-gray-200 rounded-lg h-24 flex items-center justify-center hover:shadow-lg transition-shadow p-4"
+            >
+              <div className="text-center">
+                <div className="text-purple-700 font-bold text-lg">DIDComm</div>
+                <div className="text-purple-700 font-semibold text-xs">Messaging</div>
+              </div>
+            </a>
           </div>
         </div>
       </section>
