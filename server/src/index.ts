@@ -13,7 +13,7 @@ const baseRoute = process.env.BASE_ROUTE || ''
 const normalizedBaseRoute = baseRoute.endsWith('/') ? baseRoute.slice(0, -1) : baseRoute
 
 const app: Express = createExpressServer({
-  controllers: [__dirname + '/controllers/**/*.ts'],
+  controllers: [__dirname + '/controllers/**/*{.ts,.js}'],
   cors: true,
   routePrefix: `${normalizedBaseRoute}/demo`,
 })

@@ -19,6 +19,7 @@ This is the production deployment guide for the ConfirmedPerson application, a v
 - **Client Build**: ✅ Successful (with warnings - see below)
 - **Server Build**: ✅ Successful  
 - **Tests**: ⚠️ 1 of 3 Cypress tests failing (UI element selector issue)
+- **Docker**: ✅ Fixed networking and routing issues
 
 ## Project Structure
 ```
@@ -202,3 +203,31 @@ All legal pages include proper routing, analytics tracking, and navigation.
 **Status**: Ready for Production Deployment ✅
 **Last Updated**: $(date)
 **Build Size**: 261.03 kB (main.js gzipped)
+
+## Troubleshooting
+
+### Docker Networking Issues
+If you encounter `NotFoundError` or connection issues when running with Docker:
+
+1. **Ensure services are on the same network**:
+   ```bash
+   docker-compose down
+   docker-compose up --build
+   ```
+
+2. **Check container connectivity**:
+   ```bash
+   docker-compose exec confirmd_frontend ping confirmd_backend
+   ```
+
+3. **Verify reverse proxy configuration**:
+   The Caddyfile should proxy API requests to `confirmd_backend:5511`
+
+4. **Check environment variables**:
+   - Frontend should use `REACT_APP_HOST_BACKEND=""` (empty for relative URLs)
+   - Backend should run on port `5511`
+
+### Common Issues
+- **404 errors**: Usually indicate routing issues between frontend and backend
+- **WebSocket connections**: Ensure both HTTP and WebSocket traffic is properly proxied
+- **CORS errors**: Check that the backend CORS configuration allows the frontend domain

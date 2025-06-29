@@ -1,6 +1,8 @@
 networks:
   traefik-network:
     external: true
+  app-network:
+    driver: bridge
 
 services:
   confirmd_frontend:
@@ -16,9 +18,10 @@ services:
       - '3000:3000'
     depends_on:
       - confirmd_backend
-
-    env_file:
-      - ./client/.env
+    environment:
+      - REACT_APP_HOST_BACKEND=""
+      - REACT_APP_BASE_ROUTE=""
+      - REACT_APP_GA_MEASUREMENT_ID=G-XZSVD9FZMQ
     labels:
       #Traefik
       - 'traefik.enable=true'
@@ -41,6 +44,7 @@ services:
 
     networks:
       - traefik-network
+      - app-network
 
   confirmd_backend:
     image: bc-wallet-demo-server
@@ -51,6 +55,9 @@ services:
       - '5555:5511'
     env_file:
       - ./server/.env
+    networks:
+      - traefik-network
+      - app-network
     labels:
       #Traefik
       - 'traefik.enable=true'
@@ -70,6 +77,3 @@ services:
 
       # Services
       - 'traefik.http.services.confirmd_backend.loadbalancer.server.port=5511'
-
-    networks:
-      - traefik-network

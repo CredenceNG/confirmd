@@ -49,7 +49,7 @@
             header Upgrade    websocket
         }
 
-        reverse_proxy @websockets backend:5001
+        reverse_proxy @websockets confirmd_backend:5511
 
         # Required for SPA router to work
         @spa_router {
@@ -66,7 +66,7 @@
         }
 
         # Proxy requests to API service
-        reverse_proxy @pass backend:5001 {
+        reverse_proxy @pass confirmd_backend:5511 {
             trusted_proxies 0.0.0.0/0
             header_up Host {upstream_hostport}
             header_up X-Forwarded-Host {host}
