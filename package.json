@@ -1,12 +1,12 @@
 {
-  "name": "bc-wallet-demo",
+  "name": "confirmd-wallet-demo",
   "version": "0.1.0",
   "private": true,
   "license": "Apache-2.0",
-  "description": "Confirm Wallet - Verifiable Credential Demo",
+  "description": "Confirmd Wallet - Verifiable Credential Demo",
   "repository": {
-    "url": "https://github.com/bcgov/bc-wallet-demo",
-    "type": "git"
+    "url": "https://getconfirmd.com",
+    "type": "website"
   },
   "workspaces": [
     "client",

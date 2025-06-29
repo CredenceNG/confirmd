@@ -4,7 +4,7 @@ networks:
 
 services:
   confirmd_frontend:
-    image: bc-wallet-demo-web
+    image: confirmd-wallet-demo-web
     build:
       context: ./
       dockerfile: ./client/Dockerfile

@@ -75,7 +75,7 @@ export const SetupConnection: React.FC<Props> = ({
   const [isConnectionEstablished, setIsConnectionEstablished] = useState(false)
   const [isReadyForCredential, setIsReadyForCredential] = useState(false)
   const [autoProceed, setAutoProceed] = useState(false)
-  const deepLink = invitationUrl ? `bcwallet://aries_connection_invitation?${invitationUrl.split('?')[1]}` : ''
+  const deepLink = invitationUrl ? `confirmdwallet://aries_connection_invitation?${invitationUrl.split('?')[1]}` : ''
 
   // Track connection status reactively
   const isConnectionActive = isConnected(connectionState as string)

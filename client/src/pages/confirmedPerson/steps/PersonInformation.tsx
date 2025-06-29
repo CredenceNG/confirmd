@@ -1,5 +1,3 @@
-import type { PersonInformation as PersonInfoType } from '../../../slices/confirmedPerson/confirmedPersonSlice'
-
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { FiUpload } from 'react-icons/fi'
@@ -8,7 +6,6 @@ import { fadeDelay } from '../../../FramerAnimations'
 import { useAppDispatch } from '../../../hooks/hooks'
 import { useConfirmedPerson } from '../../../slices/confirmedPerson/confirmedPersonSelectors'
 import { updatePersonInformation } from '../../../slices/confirmedPerson/confirmedPersonSlice'
-// Import PersonInformation type with a different name to avoid conflict
 
 export const PersonInformation: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -58,7 +55,7 @@ export const PersonInformation: React.FC = () => {
               id="familyName"
               value={personInformation.familyName}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 dark:border-gray-100 rounded dark:bg-gray-800 dark:text-blue"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               required
             />
           </div>
@@ -72,7 +69,7 @@ export const PersonInformation: React.FC = () => {
               id="givenNames"
               value={personInformation.givenNames}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded dark:bg-gray-800 dark:text-blue"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               required
             />
           </div>
@@ -89,7 +86,7 @@ export const PersonInformation: React.FC = () => {
               id="dateOfBirth"
               value={personInformation.dateOfBirth}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded dark:bg-gray-800 dark:text-blue"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               required
             />
           </div>
@@ -103,7 +100,7 @@ export const PersonInformation: React.FC = () => {
               id="gender"
               value={personInformation.gender}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded dark:bg-gray-800 dark:text-blue"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               required
             >
               <option value="">Select Gender</option>
@@ -122,7 +119,7 @@ export const PersonInformation: React.FC = () => {
               id="documentType"
               value={personInformation.documentType}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded dark:bg-gray-800 dark:text-blue"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               required
             >
               <option value="">Select Document Type</option>
@@ -141,7 +138,7 @@ export const PersonInformation: React.FC = () => {
               id="documentNumber"
               value={personInformation.documentNumber}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded dark:bg-gray-800 dark:text-blue"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               required
             />
           </div>
@@ -157,7 +154,7 @@ export const PersonInformation: React.FC = () => {
               id="documentExpiryDate"
               value={personInformation.documentExpiryDate}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded dark:bg-gray-800 dark:text-blue"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               required
             />
           </div>
@@ -172,7 +169,7 @@ export const PersonInformation: React.FC = () => {
               id="nationality"
               value={personInformation.nationality}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded dark:bg-gray-800 dark:text-blue"
+              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
               required
             />
           </div>
@@ -188,7 +185,7 @@ export const PersonInformation: React.FC = () => {
             id="documentIssuingBody"
             value={personInformation.documentIssuingBody}
             onChange={handleChange}
-            className="w-full p-2 border border-gray-300 dark:border-gray-700 rounded dark:text-white dark:text-blue"
+            className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
             required
           />
         </div>
@@ -201,7 +198,7 @@ export const PersonInformation: React.FC = () => {
                 Front of Document
               </label>
               <div className="flex items-center">
-                <label className="flex items-center justify-center w-full p-2 border border-dashed border-gray-300 dark:border-gray-700 rounded cursor-pointer">
+                <label className="flex items-center justify-center w-full p-2 border border-dashed border-gray-300 dark:border-gray-600 rounded cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-600">
                   <input
                     type="file"
                     id="frontImage"
@@ -209,8 +206,8 @@ export const PersonInformation: React.FC = () => {
                     className="hidden"
                     onChange={(e) => handleImageUpload(e, 'front')}
                   />
-                  <FiUpload className="mr-2 dark:text-blue" />
-                  <span className="dark:text-white">
+                  <FiUpload className="mr-2 text-gray-600 dark:text-gray-300" />
+                  <span className="text-gray-600 dark:text-gray-300">
                     {documentImages.find((img) => img.label === 'front') ? 'Change Image' : 'Upload'}
                   </span>
                 </label>
@@ -222,7 +219,7 @@ export const PersonInformation: React.FC = () => {
                 Back of Document
               </label>
               <div className="flex items-center">
-                <label className="flex items-center justify-center w-full p-2 border border-dashed border-gray-300 dark:border-gray-700 rounded cursor-pointer">
+                <label className="flex items-center justify-center w-full p-2 border border-dashed border-gray-300 dark:border-gray-600 rounded cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-600">
                   <input
                     type="file"
                     id="backImage"
@@ -230,8 +227,8 @@ export const PersonInformation: React.FC = () => {
                     className="hidden"
                     onChange={(e) => handleImageUpload(e, 'back')}
                   />
-                  <FiUpload className="mr-2 dark:text-white" />
-                  <span className="dark:text-white">
+                  <FiUpload className="mr-2 text-gray-600 dark:text-gray-300" />
+                  <span className="text-gray-600 dark:text-gray-300">
                     {documentImages.find((img) => img.label === 'back') ? 'Change Image' : 'Upload'}
                   </span>
                 </label>

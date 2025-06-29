@@ -65,7 +65,7 @@ export const WalletModal: React.FC<Props> = ({ isWalletModalOpen, setIsWalletMod
               <div style={{ display: 'flex', alignItems: 'flex-start' }}>
                 <div className="px-2 md:px-6 pt-2 sm:mt-4 sm:pb-4">
                   <div className="mt-5">
-                    <p className="font-semibold">1. Download Confirmd Walleton your phone</p>
+                    <p className="font-semibold">1. Download Confirmd Wallet on your phone</p>
                     <p className="mt-5 mb-5">
                       To download,{' '}
                       {isMobile()

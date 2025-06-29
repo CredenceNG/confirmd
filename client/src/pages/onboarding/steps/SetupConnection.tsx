@@ -46,7 +46,7 @@ export const SetupConnection: React.FC<Props> = ({
   backgroundImage,
   onConnectionComplete,
 }) => {
-  const deepLink = `bcwallet://aries_connection_invitation?${invitationUrl?.split('?')[1]}`
+  const deepLink = `confirmdwallet://aries_connection_invitation?${invitationUrl?.split('?')[1]}`
   const [connectionConfirmed, setConnectionConfirmed] = useState(false)
   const [isProcessingCredential, setIsProcessingCredential] = useState(false)
 
